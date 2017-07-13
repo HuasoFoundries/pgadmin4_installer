@@ -1,3 +1,4 @@
+uwsgi
 build-essential
 libffi-dev
 libgmp3-dev

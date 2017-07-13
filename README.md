@@ -21,7 +21,47 @@ source ./env/bin/activate
  - make requirements_python2 or
  - make requirements_python3
 
-6. Start pgAdmin4 by running
+
+### Run locally
+
+Start pgAdmin4 by running
+
 ```sh
 ./run_pgadmin.sh
+```
+
+### Run as uwsgi
+
+Start pgAdmin4 as an uwsgi process by running
+
+Edit `./init_files/uwsgi.sh` replacing the placeholders with the current path.
+
+For example 
+ - <PATH/TO/THIS_REPO> could be `/opt/pgadmin4_installer`
+ - <PATH/TO/PGADMIN4>  could be 
+   - `/opt/pgadmin4_installer/env/lib/python3.5/site-packages/pgadmin4` if you used python3 or
+   - `/opt/pgadmin4_installer/env/lib/python2.7/site-packages/pgadmin4` if you used python2
+
+Then run in the console:
+
+```sh
+./init_files/uwsgi.sh
+```
+
+### Run as uwsgi service
+
+Edit `./init_files/pgadmin.ini` replacing the placeholders with the current path.
+
+For example 
+ - <PATH/TO/THIS_REPO> could be `/opt/pgadmin4_installer`
+ - <PATH/TO/PGADMIN4>  could be 
+   - `/opt/pgadmin4_installer/env/lib/python3.5/site-packages/pgadmin4` if you used python3 or
+   - `/opt/pgadmin4_installer/env/lib/python2.7/site-packages/pgadmin4` if you used python2
+
+```sh
+sudo cp ./init_files/uwsgi.conf to /etc/init/uwsgi.conf
+sudo cp ./init_files/pgadmin.ini to /etc/uwsgi/sites/pgadmin.ini
+sudo service uwsgi start
+sudo update-rc.d uwsgi defaults
+sudo update-rc.d uwsgi enable
 ```
