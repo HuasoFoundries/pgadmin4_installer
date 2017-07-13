@@ -102,3 +102,4 @@ ENV/
 
 sftp-config.json
 fabfile*
+pgadmin4*.whl
