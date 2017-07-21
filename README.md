@@ -59,8 +59,8 @@ For example
    - `/opt/pgadmin4_installer/env/lib/python2.7/site-packages/pgadmin4` if you used python2
 
 ```sh
-sudo cp ./init_files/uwsgi.conf to /etc/init/uwsgi.conf
-sudo cp ./init_files/pgadmin.ini to /etc/uwsgi/sites/pgadmin.ini
+sudo cp ./init_files/uwsgi.conf  /etc/init/uwsgi.conf
+sudo cp ./init_files/pgadmin.ini /etc/uwsgi/sites/pgadmin.ini
 sudo service uwsgi start
 sudo update-rc.d uwsgi defaults
 sudo update-rc.d uwsgi enable
