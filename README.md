@@ -11,22 +11,27 @@ Steps to install pgAdmin4 in any machine
 2. Install apt requirements by running `make install-deps-apt` (it might require running with sudo)
 
 3. Find the latest pgAdmin4 release at [https://ftp.postgresql.org/pub/pgadmin/pgadmin4/](https://ftp.postgresql.org/pub/pgadmin/pgadmin4/)
- - it should be under v1.x/pip/pgadmin4*****.whl
+ - it should be under v3.1/pip/pgadmin4*****.whl
 
 4. Replace the value of the link in Makefile PIP_URL variable with the link to the latest release
 
-5. Run install make tasks for python2 or python3, depending on what you prefer
- - make install_python2 or
- - make install_python3
-
-6. Run in the shell
+5. At this point, `fabric` should have been installed in your machine. Use fabric tasks to install for python2 or 3
+ 
 ```sh
-source ./env/bin/activate
+fab install_python2
 ```
 
-7. Run in the shell
- - make requirements_python2 or
- - make requirements_python3
+or
+
+```sh
+fab install_python3
+```
+
+The above scripts will install pgAdmin4 and its requirements, and copy the `config.py` file as `config_local.py`. Make any desired changes in `config_local.py` to customize the app's behavior.
+
+### Important!!
+
+Since the release 2.x, pgAdmin4 will set `SERVER_MODE = True` by default in its config file. If you want to run in desktop mode, **remember to edit**  `config_local.py` setting `SERVER_MODE = False`. Otherwise, `pgAdmin4` will try to create its local database in `/var/lib/pgadmin` instead of `~/.pgadmin`, and it will crash because you lack permissions.
 
 
 ### Run locally
@@ -34,8 +39,10 @@ source ./env/bin/activate
 Start pgAdmin4 by running
 
 ```sh
-./run_pgadmin.sh
+fab launch
 ```
+
+Then open your browser at http://127.0.0.1:5050
 
 ### Run as uwsgi
 
