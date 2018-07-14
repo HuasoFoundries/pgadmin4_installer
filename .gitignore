@@ -103,3 +103,4 @@ ENV/
 sftp-config.json
 fabfile*
 pgadmin4*.whl
+get-pip.py
