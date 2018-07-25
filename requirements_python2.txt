@@ -1,4 +1,5 @@
 cryptography
 pyopenssl
 ndg-httpsclient
-pyasn1 
+pyasn1
+uwsgi
